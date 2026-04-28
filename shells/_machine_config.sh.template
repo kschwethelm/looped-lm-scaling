@@ -1,0 +1,51 @@
+# Machine-specific configuration template
+# Copy this file to machine_config.sh and update for your environment
+# The machine_config.sh file is gitignored to prevent committing machine-specific paths
+
+# ============================================================================
+# Directory Configuration
+# ============================================================================
+BASE_DIR="/path/to/your/base/directory"
+
+# Set cache directories (datasets as subdirectory of HF_HOME)
+export HF_HOME="$BASE_DIR/LLMs/.cache/huggingface"
+export HF_DATASETS_CACHE="$HF_HOME/datasets"
+
+# Set nanochat directory
+export NANOCHAT_BASE_DIR="$BASE_DIR/.cache/nanochat"
+
+# ============================================================================
+# SLURM Configuration - Customize for your cluster
+# ============================================================================
+
+# GPU jobs (training, evaluation)
+export SLURM_PARTITION_GPU="your-gpu-partition"
+export SLURM_QOS_GPU="your-gpu-qos"
+export SLURM_ACCOUNT=""                        # Optional: SLURM account (e.g., "eagle"), leave empty if not required
+export NUM_GPUS="${NUM_GPUS:-2}"               # Number of GPUs per job (overridable via env)
+export SLURM_GPU_TYPE="${SLURM_GPU_TYPE:-}"    # Optional: GPU type constraint (e.g., "h100", "a100"), leave empty for any GPU
+export SLURM_GPU_MEM="${SLURM_GPU_MEM:-}"      # Optional: GPU memory per GPU (e.g., "20G"), leave empty if not supported
+export SLURM_MEM_GPU="64G"
+export SLURM_CPUS_GPU="${SLURM_CPUS_GPU:-16}"     # CPUs to request for GPU jobs
+export SLURM_TIME="${SLURM_TIME:-10:00:00}"      # Default time limit for all jobs
+export SLURM_MAIL_USER="your.email@example.com"
+
+# CPU Jobs (for data downloads, tokenizer training)
+export SLURM_PARTITION_CPU="lrz-cpu"             # CPU partition name
+export SLURM_QOS_CPU="cpu"                       # CPU QoS
+export SLURM_MEM_CPU="32G"                       # Memory for CPU jobs
+export SLURM_CPUS_CPU="1"                         # CPUs per CPU job
+
+# ============================================================================
+# Validation Function
+# ============================================================================
+
+validate_config() {
+    for var in HF_HOME HF_DATASETS_CACHE NANOCHAT_BASE_DIR; do
+        if [ -z "${!var:-}" ]; then
+            echo "ERROR: $var not set after sourcing machine_config.sh" >&2
+            return 1
+        fi
+    done
+    return 0
+}

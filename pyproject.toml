@@ -1,0 +1,73 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["nanochat"]
+
+[project]
+name = "nanochat"
+version = "0.1.0"
+description = "the minimal full-stack ChatGPT clone"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "flash-attn",
+    "kernels>=0.11.7",
+    "psutil>=7.1.0",
+    "pyarrow>=24.0.0",
+    "setuptools>=80.9.0",
+    "tokenizers>=0.22.0",
+    "torch>=2.9.0",
+    "transformers>=4.57.3",
+    "wandb>=0.24.1",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]           # Only look for tests in the tests/ directory
+python_files = ["test_*.py"]    # Files must start with "test_"
+python_classes = ["Test*"]      # Test classes must start with "Test"
+python_functions = ["test_*"]   # Test functions must start with "test_"
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+]
+
+# target torch to cuda 12.8 or CPU
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cpu", extra = "cpu" },
+    { index = "pytorch-cu128", extra = "gpu" },
+]
+flash-attn = { url = "https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3+cu12torch2.9cxx11abiTRUE-cp312-cp312-linux_x86_64.whl" }
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[project.optional-dependencies]
+cpu = [
+    "torch>=2.9.1",
+]
+gpu = [
+    "torch>=2.9.1",
+]
+
+[tool.uv]
+conflicts = [
+    [
+        { extra = "cpu" },
+        { extra = "gpu" },
+    ],
+]

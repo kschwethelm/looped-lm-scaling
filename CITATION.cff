@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper."
+title: "looped-lm-scaling: Iso-Depth Scaling Laws for Looped Language Models"
+version: 0.1.0
+date-released: 2026-04-24
+authors:
+  - family-names: Schwethelm
+    given-names: Kristian
+    affiliation: "Chair for AI in Healthcare and Medicine, Technical University of Munich (TUM) and TUM University Hospital"
+  - family-names: Rueckert
+    given-names: Daniel
+    affiliation: "Chair for AI in Healthcare and Medicine, Technical University of Munich (TUM) and TUM University Hospital; Department of Computing, Imperial College London; Munich Center for Machine Learning (MCML)"
+  - family-names: Kaissis
+    given-names: Georgios
+    affiliation: "Hasso Plattner Institute for Digital Engineering, University of Potsdam"
+preferred-citation:
+  type: article
+  title: "How Much Is One Recurrence Worth? Iso-Depth Scaling Laws for Looped Language Models"
+  authors:
+    - family-names: Schwethelm
+      given-names: Kristian
+    - family-names: Rueckert
+      given-names: Daniel
+    - family-names: Kaissis
+      given-names: Georgios
+  year: 2026
+  journal: "arXiv preprint arXiv:2604.21106"
+  url: "https://arxiv.org/abs/2604.21106"
+  identifiers:
+    - type: doi
+      value: 10.48550/arXiv.2604.21106
+    - type: other
+      value: "arXiv:2604.21106"

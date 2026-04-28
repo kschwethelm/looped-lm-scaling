@@ -1,0 +1,24 @@
+.venv/
+__pycache__/
+*.pyc
+dev-ignore/
+report.md
+eval_bundle/
+.cache
+
+# Local setup
+wandb/
+logs/
+knowledge/
+dev/*report*
+
+# Claude files
+.nfs0*
+scheduled_tasks.lock
+worktrees/
+
+# Machine-specific config
+shells/_machine_config*.sh
+
+# Local docs / specs / plans — not synced to remote
+*paper/
