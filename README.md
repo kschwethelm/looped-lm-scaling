@@ -5,6 +5,7 @@
 [![HF Collection](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Collection-yellow.svg)](https://huggingface.co/collections/KristianS7/iso-depth-scaling-laws-for-looped-lms)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.9+-EE4C2C.svg?logo=pytorch&logoColor=white)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![DOI](https://zenodo.org/badge/1219015545.svg)](https://doi.org/10.5281/zenodo.19916086)
 
 Code for the paper [**How Much Is One Recurrence Worth? Iso-Depth Scaling Laws for Looped Language Models**](https://arxiv.org/abs/2604.21106). We measure the parameter-sharing cost of looped (depth-recurrent) transformers as a single number, the recurrence-equivalence exponent $\varphi$, and obtain $\varphi = 0.46$ from a 116-run iso-depth grid spanning ~50× in training compute. We then use $\Delta\varphi$ as a measurement tool: truncated BPTT makes the loop worse ($\varphi = 0.35$) despite lowering validation loss, while hyperconnections improve it ($\varphi = 0.66$).
 
